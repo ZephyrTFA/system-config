@@ -1,0 +1,13 @@
+{
+  "nix.formatterPath": "alejandra",
+  "editor.formatOnSave": true,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "[nix]": {
+    "editor.defaultFormatter": "kamadorueda.alejandra",
+  },
+}
