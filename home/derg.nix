@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -8,6 +9,12 @@
     extraGroups = ["wheel"];
     home = "/persist/user-homes/derg";
     shell = pkgs.fish;
-    packages = with pkgs; [vscode vesktop alejandra spotify direnv tuxclocker];
+    packages = with pkgs; [
+      vscode
+      vesktop
+      alejandra
+      spotify
+      direnv
+    ];
   };
 }

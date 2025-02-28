@@ -7,5 +7,6 @@
     ./konsole.nix
     ./prism.nix
     ./steam.nix
+    ./tuxclocker.nix
   ];
 }
