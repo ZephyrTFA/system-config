@@ -1,1 +1,6 @@
-{...}: {programs.steam.enable = true;}
+{...}: {
+  imports = [
+    ./proton-experimental.nix
+  ];
+  programs.steam.enable = true;
+}
