@@ -1,8 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
-    ./home
-    ./programs
+    ../../users/derg.nix
+    ../../programs/tuxclocker.nix
     ./services
     ./system
+  ];
+  environment.systemPackages = with pkgs; [
+    alejandra
   ];
 }

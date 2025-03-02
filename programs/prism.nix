@@ -1,7 +1,16 @@
 {
   lib,
   pkgs,
-  ...
+  javaVersions ? [
+    {
+      tag = "jdk-23.0.2";
+      hash = "sha256-DPY+iBU7dZE2lHwU8AQsUVrh/5q/NG8UPcR68GWx1t0=";
+    }
+    {
+      tag = "jdk-17.0.9";
+      hash = "sha256-5HunIpzvAjk+GdW49G9/HKtIKd0Xv+hNVDH8j/DiKpY=";
+    }
+  ],
 }: let
   graal = {
     tag,
@@ -17,18 +26,7 @@
       doInstallCheck = false;
     };
 in {
-  environment.systemPackages = with pkgs; [
-    (prismlauncher.override {
-      jdks = [
-        (graal {
-          tag = "jdk-23.0.2";
-          hash = "sha256-DPY+iBU7dZE2lHwU8AQsUVrh/5q/NG8UPcR68GWx1t0=";
-        })
-        (graal {
-          tag = "jdk-17.0.9";
-          hash = "sha256-5HunIpzvAjk+GdW49G9/HKtIKd0Xv+hNVDH8j/DiKpY=";
-        })
-      ];
-    })
-  ];
+  prism = pkgs.prismlauncher.override {
+    jdks = builtins.map graal javaVersions;
+  };
 }

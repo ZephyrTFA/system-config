@@ -36,31 +36,19 @@
           };
           overlays = [fenix.overlays.default];
         };
+        nodeSpecialArgs.derg-nix = {
+          inherit fenix;
+        };
       };
 
       derg-nix = {
-        deployment = {
-          targetHost = "derg-nix";
-          targetPath = "/etc/nixos";
-        };
-        imports = [
+        deployment.allowLocalDeployment = true;
+        imports = with inputs; [
+          agenix.nixosModules.default
+          home-manager.nixosModules.home-manager
           ./systems/derg-nix
         ];
       };
-    };
-
-    packages.x86_64-linux.default = fenix.packages.x86_64-linux.minimal.toolchain;
-    nixosConfigurations.derg-nix = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ({pkgs, ...}: {
-          nixpkgs.overlays = [fenix.overlays.default];
-        })
-        ./home
-        ./programs
-        ./services
-        ./system
-      ];
     };
   };
 }
