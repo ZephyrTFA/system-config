@@ -15,11 +15,6 @@
   programs.fish.enable = true;
 
   home-manager.users.derg = {
-    services.gpg-agent = {
-      enable = true;
-      enableSshSupport = true;
-    };
-
     programs = {
       firefox.enable = true;
       fish = {
@@ -34,8 +29,16 @@
         userName = "ZephyrTFA";
         userEmail = "matthew@tfaluc.com";
       };
-      gpg.enable = true;
       vim.enable = true;
+      gpg.enable = true;
+    };
+
+    services.gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      extraConfig = ''
+        pinentry-program ${pkgs.pinentry}/bin/pinentry
+      '';
     };
 
     home.packages = with pkgs; [
