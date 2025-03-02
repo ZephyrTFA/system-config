@@ -2,9 +2,10 @@
   config,
   lib,
   pkgs,
+  home-manager,
   ...
 }: {
-  users.users.derg = {
+  home-manager.users.users.derg = {
     isNormalUser = true;
     extraGroups = ["wheel"];
     home = "/persist/user-homes/derg";
