@@ -14,6 +14,17 @@
   programs.steam.enable = true;
   programs.fish.enable = true;
 
+  home-manager.users.derg.services.kdeconnect.enable = true;
+  networking.firewall = rec {
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+
   home-manager.users.derg = {
     programs = {
       firefox.enable = true;
@@ -29,8 +40,8 @@
         userName = "ZephyrTFA";
         userEmail = "matthew@tfaluc.com";
       };
-      vim.enable = true;
       gpg.enable = true;
+      vim.enable = true;
     };
 
     services.gpg-agent = {
