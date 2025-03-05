@@ -26,6 +26,10 @@
   };
 
   home-manager.users.derg = {
+    gtk.enable = true;
+    gtk.theme.package = pkgs.gnome-themes-extra;
+    gtk.theme.name = "Adwaita-dark";
+
     programs = {
       firefox.enable = true;
       fish = {
