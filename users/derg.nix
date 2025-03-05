@@ -60,8 +60,7 @@
       kdePackages.konsole
       vscode
       spotify
-      vesktop
-      (fenix.packages.x86_64-linux.stable.completeToolchain)
+      shotgun
       ((import ../programs/prism.nix {inherit lib pkgs;}).prism)
       (discord.override {withVencord = true;})
     ];
