@@ -1,6 +1,4 @@
 {
-  config,
-  fenix,
   pkgs,
   home-manager,
   ...

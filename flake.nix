@@ -26,6 +26,7 @@
     colmena,
     ...
   }: {
+    home-manager.backupFileExtension = "bak";
     colmena = {
       meta = {
         nixpkgs = import nixpkgs {
@@ -35,9 +36,6 @@
             allowUnfreePredicate = _: true;
           };
           overlays = [fenix.overlays.default];
-        };
-        nodeSpecialArgs.derg-nix = {
-          inherit fenix;
         };
       };
 
