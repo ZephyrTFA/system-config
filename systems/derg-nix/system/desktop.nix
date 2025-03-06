@@ -1,7 +1,9 @@
 {...}: {
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    displayManager.lightdm.enable = true;
+    displayManager.defaultSession = "xfce";
+    desktopManager.xfce.enable = true;
+    desktopManager.xterm.enable = false;
   };
 }
