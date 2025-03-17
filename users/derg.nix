@@ -73,8 +73,9 @@
       linker = "${pkgs.clang}/bin/clang"
       rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
     '';
-    # some cargo crate build scripts hardcode using cc
+    # some cargo crate build scripts hardcode specific tools
     home.file.".local/state/nix/profile/bin/cc".source = "${pkgs.clang}/bin/clang";
+    home.file.".local/state/nix/profile/bin/ar".source = "${pkgs.clang}/bin/ar";
 
     home.stateVersion = config.system.stateVersion;
   };
