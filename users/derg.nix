@@ -61,6 +61,7 @@
       spotify
       shotgun
       rustup
+      telegram-desktop
       ((import ../programs/prism.nix {inherit lib pkgs;}).prism)
       (discord.override {withVencord = true;})
     ];
