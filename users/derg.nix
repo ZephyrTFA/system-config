@@ -4,6 +4,10 @@
   home-manager,
   ...
 }: {
+  imports = [
+    ../programs/jdk_env.nix
+  ];
+
   users.users.derg = {
     isNormalUser = true;
     extraGroups = ["wheel"];
