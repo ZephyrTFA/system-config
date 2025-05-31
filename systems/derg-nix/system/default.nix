@@ -16,6 +16,9 @@
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   time.timeZone = "America/New_York";
 
   networking.networkmanager.enable = true;
