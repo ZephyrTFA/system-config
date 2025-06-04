@@ -28,6 +28,7 @@
 
   networking.networkmanager.enable = true;
   networking.hostName = "derg-nix";
+  networking.hostId = "6a2e7645";
   networking.useDHCP = lib.mkDefault true;
   programs.mtr.enable = true;
 }
