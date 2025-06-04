@@ -54,6 +54,15 @@
         "noatime"
       ];
     };
+    "/persist/steam" = {
+      device = "/dev/pool/steam";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [
+        "compress=zstd"
+        "noatime"
+      ];
+    };
     "/persist" = {
       device = "/dev/pool/persist";
       fsType = "btrfs";
