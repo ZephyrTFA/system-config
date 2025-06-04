@@ -12,6 +12,9 @@
     isNormalUser = true;
     extraGroups = ["wheel"];
     home = "/persist/user-homes/derg";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvRq0FC5TOB9c+XRJdx20JUSga76R3Ohni3FH7trzgE derg@derg-nix"
+    ];
   };
 
   programs.steam.enable = true;

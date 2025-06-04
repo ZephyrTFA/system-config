@@ -9,6 +9,7 @@
   system.stateVersion = "25.05";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   nixpkgs.config.allowUnfree = true;
@@ -18,6 +19,10 @@
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  environment.systemPackages = with pkgs; [
+    bluez
+    bluez-tools
+  ];
 
   time.timeZone = "America/New_York";
 
