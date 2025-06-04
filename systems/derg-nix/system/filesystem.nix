@@ -1,4 +1,9 @@
-{...}: {
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    xfsprogs
+    xfsdump
+  ];
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/080a1cb7-9a5d-4ea5-aaaf-996ba33c1e8b";
