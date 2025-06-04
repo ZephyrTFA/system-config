@@ -14,11 +14,25 @@
       fsType = "vfat";
       options = ["fmask=0077" "dmask=0077"];
     };
-    "/nix" = {
-      device = "/dev/pool/nix-btrfs";
+    "/nix/store" = {
+      device = "/dev/pool/nix";
       fsType = "btrfs";
       neededForBoot = true;
-      options = ["noatime"];
+      options = [
+        "subvol=store"
+        "compress=zstd"
+        "noatime"
+      ];
+    };
+    "/nix/var" = {
+      device = "/dev/pool/nix";
+      fsType = "btrfs";
+      neededForBoot = true;
+      options = [
+        "subvol=var"
+        "compress=zstd"
+        "noatime"
+      ];
     };
     "/var/log" = {
       device = "/dev/pool/persist";
