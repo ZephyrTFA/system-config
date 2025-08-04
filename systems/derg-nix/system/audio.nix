@@ -1,35 +1,25 @@
-{pkgs, ...}: {
+{...}: {
   security.rtkit.enable = true;
-  environment.systemPackages = with pkgs; [
-    helvum
-  ];
+
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    audio.enable = true;
     pulse.enable = true;
-
-    extraConfig.pipewire."92-low-latency" = {
-      "context.properties" = {
-        "default.clock.rate" = 48000;
-        "default.clock.quantum" = 32;
-        "default.clock.min-quantum" = 32;
-        "default.clock.max-quantum" = 32;
-      };
+    alsa = {
+      enable = true;
+      support32Bit = true;
     };
+    jack.enable = true;
+  };
 
-    wireplumber.extraConfig."10-bluez" = {
-      "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [
-          "hsp_hs"
-          "hsp_ag"
-          "hfp_hf"
-          "hfp_ag"
-        ];
-      };
+  services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
+    "monitor.bluez.properties" = {
+      "bluez5.enable-sbc-xq" = true;
+      "bluez5.enable-msbc" = true;
+      "bluez5.enable-hw-volume" = true;
+      "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
+      "bluez5.codecs" = ["ldac" "aptx" "aptx_hd" "aac" "sbc"];
     };
   };
+  hardware.pulseaudio.enable = false;
 }

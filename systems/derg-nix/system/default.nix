@@ -9,7 +9,11 @@
   system.stateVersion = "25.05";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   hardware.enableAllFirmware = true;
+  boot.kernelModules = ["thunderbolt"];
+  boot.loader.systemd-boot.configurationLimit = 5;
+  security.rtkit.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   nixpkgs.config.allowUnfree = true;
@@ -18,11 +22,12 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
   services.blueman.enable = true;
-  environment.systemPackages = with pkgs; [
-    bluez
-    bluez-tools
-  ];
 
   time.timeZone = "America/New_York";
 
