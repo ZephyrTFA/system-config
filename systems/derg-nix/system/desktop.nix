@@ -1,10 +1,18 @@
 {pkgs, ...}: {
   services.xserver = {
     enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.defaultSession = "xfce";
-    desktopManager.xfce.enable = true;
-    desktopManager.xterm.enable = false;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
-  environment.systemPackages = [pkgs.xfce.xfce4-whiskermenu-plugin];
+  environment.systemPackages = with pkgs; [
+    gnomeExtensions.headsetcontrol
+    gnomeExtensions.appindicator
+    gnomeExtensions.arc-menu
+    sysprof
+  ];
+  services.udev.packages = with pkgs; [
+    gnome-settings-daemon
+  ];
+  services.sysprof.enable = true;
+  environment.shells = with pkgs; [fish];
 }

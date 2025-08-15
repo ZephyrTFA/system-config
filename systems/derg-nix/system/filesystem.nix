@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     xfsprogs
     xfsdump
+    fuse3
   ];
 
   fileSystems = {
