@@ -26,6 +26,10 @@
     colmena,
     ...
   }: {
+    imports = [
+      ./cachix.nix
+    ];
+
     home-manager.backupFileExtension = "bak";
     colmena = {
       meta = {
