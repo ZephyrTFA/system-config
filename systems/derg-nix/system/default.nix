@@ -12,6 +12,7 @@
 
   hardware.enableAllFirmware = true;
   boot.kernelModules = ["thunderbolt"];
+
   boot.loader.systemd-boot.configurationLimit = 5;
   security.rtkit.enable = true;
 
@@ -21,10 +22,14 @@
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        Enable = "Source,Sink,Media,Socket";
+      };
     };
   };
   services.blueman.enable = true;
