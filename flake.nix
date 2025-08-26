@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    vive-pro2-driver.url = "github:CertainLach/VivePro2-Linux-Driver";
   };
 
   outputs = inputs @ {
@@ -25,7 +24,6 @@
     fenix,
     nixpkgs,
     colmena,
-    vive-pro2-driver,
     ...
   }: {
     imports = [
@@ -42,9 +40,6 @@
             allowUnfreePredicate = _: true;
           };
           overlays = [fenix.overlays.default];
-        };
-        specialArgs = {
-          inherit vive-pro2-driver;
         };
       };
 
