@@ -17,12 +17,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = inputs @ {
     self,
     fenix,
     nixpkgs,
+    nixpkgs-unstable,
     colmena,
     ...
   }: {
@@ -31,16 +33,19 @@
     ];
 
     home-manager.backupFileExtension = "bak";
-    colmena = {
-      meta = {
-        nixpkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config = {
-            allowUnfree = true;
-            allowUnfreePredicate = _: true;
-          };
-          overlays = [fenix.overlays.default];
+    colmena = let
+      nixpkg-config = {
+        system = "x86_64-linux";
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
         };
+        overlays = [fenix.overlays.default];
+      };
+    in {
+      meta = {
+        nixpkgs = import nixpkgs nixpkg-config;
+        specialArgs.pkgs-unstable = import nixpkgs-unstable nixpkg-config;
       };
 
       derg-nix = {
