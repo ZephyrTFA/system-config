@@ -4,12 +4,6 @@
     enable32Bit = true;
   };
 
-  # you would think these are enable by default.
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
-
   # explicitly tell xserver to use nvidia over software rendering
   services.xserver.videoDrivers = ["nvidia"];
   # text based mode needs the same hint
