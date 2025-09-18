@@ -19,6 +19,7 @@
   };
 
   programs.steam.enable = true;
+  programs.steam.extraCompatPackages = with pkgs; [proton-ge-bin];
   programs.fish.enable = true;
 
   home-manager.users.derg.services.kdeconnect.enable = true;
@@ -72,6 +73,8 @@
       telegram-desktop
       ((import ../programs/prism.nix {inherit lib pkgs;}).prism)
       (discord.override {withVencord = true;})
+      devenv
+      direnv
     ];
 
     home.file.".cargo/config.toml".text = ''
