@@ -32,6 +32,7 @@
       ./cachix.nix
     ];
 
+    nix.package = nixpkgs.lixPackageSets.stable.lix;
     home-manager.backupFileExtension = "bak";
     colmena = let
       nixpkg-config = {
