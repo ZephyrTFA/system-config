@@ -33,6 +33,7 @@
     ];
 
     nix.package = nixpkgs.lixPackageSets.stable.lix;
+    nix.allowUnfree = true;
     home-manager.backupFileExtension = "bak";
     colmena = let
       nixpkg-config = {
